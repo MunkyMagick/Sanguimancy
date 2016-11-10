@@ -397,9 +397,10 @@ public class EventHandler {
         //This code is very much inspired by the one in ProfMobius' Waila mod
         public void onSanguimancyItemTooltip(ItemTooltipEvent event) {
             ItemStack stack = event.itemStack;
+            Item stackItem = stack.getItem();
 
-            if (stack != null) {
-                GameRegistry.UniqueIdentifier id = GameRegistry.findUniqueIdentifierFor(stack.getItem());
+            if (stack != null && stackItem != null) {
+                GameRegistry.UniqueIdentifier id = GameRegistry.findUniqueIdentifierFor(stackItem);
                 if (id != null && id.modId.equals(Sanguimancy.modid) && stack.stackTagCompound != null && stack.stackTagCompound.hasKey("ownerName")) {
                     if (GuiScreen.isShiftKeyDown()) {
                         event.toolTip.add(StatCollector.translateToLocal("info.Sanguimancy.tooltip.owner") + ": " + stack.stackTagCompound.getString("ownerName"));
